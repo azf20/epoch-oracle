@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: EpochOracle
-    network: localhost
+    network: ropsten
     source:
-      address: "{{localhost_EpochOracleAddress}}"
+      address: "{{ropsten_EpochOracleAddress}}"
       abi: EpochOracle
-      startBlock: 1
+      startBlock: {{ropsten_startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -20,10 +20,8 @@ dataSources:
         - Oracle
       abis:
         - name: EpochOracle
-          file: ./abis/localhost_EpochOracle.json
-      eventHandlers:
-        - event: NewEpochBlock(uint256,uint256,bytes32)
-          handler: handleNewEpochBlock
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
+          file: ./abis/ropsten_EpochOracle.json
+      callHandlers:
+        - function: setEpochBlocksPayload(bytes)
+          handler: handleSetEpochBlocksPayload
       file: ./src/mapping.ts
