@@ -29,9 +29,13 @@ yarn compile
 
 > Optional: deploy the contracts
 
+You will need a funded mnemonic.txt in `packages/hardhat`
+
 ```bash
 yarn deploy --network ropsten
 ```
+
+If you are not using the deployed version, you may need to update some parts of /packages/subgraph/src/subgraph.template.yaml, for example address, startblock, network etc.
 
 > compile your subgraph
 
